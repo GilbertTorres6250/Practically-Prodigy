@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://crnj0rxnsljwt"]
+
+[ext_resource type="Script" uid="uid://ehmgm173jb43" path="res://main_menu.gd" id="1_5b7ti"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
+bg_color = Color(0.69803923, 0.58431375, 0.29803923, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5b7ti"]
+bg_color = Color(0.5020215, 0.3916235, 0.15893051, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvdtt"]
+bg_color = Color(0.606167, 0.5035593, 0.24348262, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5qic"]
+bg_color = Color(0.36591402, 0.29869127, 0.12687868, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12kdf"]
+
+[sub_resource type="FontVariation" id="FontVariation_5b7ti"]
+spacing_glyph = 5
+
+[node name="MainMenu" type="Control" unique_id=361305075]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5b7ti")
+
+[node name="Background" type="Panel" parent="." unique_id=1741591830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=964204263]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.25
+offset_top = -90.0
+offset_right = 219.25
+offset_bottom = 240.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Start Button" type="Button" parent="VBoxContainer" unique_id=731799430]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.18730325, 0.2839298, 0.30843505, 1)
+theme_override_colors/font_focus_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_disabled_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_font_sizes/font_size = 58
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5b7ti")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dvdtt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_i5qic")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_12kdf")
+text = "START"
+
+[node name="Settings Button" type="Button" parent="VBoxContainer" unique_id=896145709]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.18730325, 0.2839298, 0.30843505, 1)
+theme_override_colors/font_focus_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_disabled_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_font_sizes/font_size = 58
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5b7ti")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dvdtt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_i5qic")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_12kdf")
+text = "SETTINGS"
+
+[node name="Quit Button" type="Button" parent="VBoxContainer" unique_id=1319779147]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.18730325, 0.2839298, 0.30843505, 1)
+theme_override_colors/font_focus_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_colors/font_disabled_color = Color(0.1882353, 0.28235295, 0.30980393, 1)
+theme_override_font_sizes/font_size = 58
+theme_override_styles/normal = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5b7ti")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dvdtt")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7yr4w")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_i5qic")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_12kdf")
+text = "QUIT"
+
+[node name="Label" type="Label" parent="." unique_id=712331539]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = SubResource("FontVariation_5b7ti")
+theme_override_font_sizes/font_size = 56
+text = "Barely Functional"
+
+[connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings Button" to="." method="_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit Button" to="." method="_quit_pressed"]
