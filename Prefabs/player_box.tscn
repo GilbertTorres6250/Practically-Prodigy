@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b5lc6iwlrldbg"]
+
+[ext_resource type="Texture2D" uid="uid://bavyclytmrs0y" path="res://Sprite/Player.png" id="1_8ypp5"]
+[ext_resource type="Script" uid="uid://g4jync8to81l" path="res://Prefabs/Character.gd" id="1_kptw1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go701"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a7ea"]
+bg_color = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kptw1"]
+font_size = 19
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Player Box" type="Node2D" unique_id=1755620135]
+scale = Vector2(2, 2)
+script = ExtResource("1_kptw1")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=1891881125]
+texture_filter = 1
+texture = ExtResource("1_8ypp5")
+
+[node name="Health Bar" type="ProgressBar" parent="." unique_id=1853020102]
+custom_minimum_size = Vector2(0, 1)
+offset_left = -50.0
+offset_top = -65.0
+offset_right = 50.0
+offset_bottom = -38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_go701")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5a7ea")
+max_value = 25.0
+value = 25.0
+show_percentage = false
+
+[node name="Health Text" type="Label" parent="Health Bar" unique_id=1437543363]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -13.5
+offset_right = 50.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "25/25"
+label_settings = SubResource("LabelSettings_kptw1")
+horizontal_alignment = 1

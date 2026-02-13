@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bm7hca2go8d7"]
+
+[ext_resource type="PackedScene" uid="uid://b5lc6iwlrldbg" path="res://Prefabs/player_box.tscn" id="1_1j2og"]
+[ext_resource type="Texture2D" uid="uid://cncwfpwtscgik" path="res://Sprite/Zombie.png" id="2_jyxkq"]
+
+[node name="Enemy Box" unique_id=1755620135 instance=ExtResource("1_1j2og")]
+
+[node name="Player" parent="." index="0" unique_id=1891881125]
+texture = ExtResource("2_jyxkq")

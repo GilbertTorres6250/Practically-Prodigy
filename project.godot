@@ -13,7 +13,13 @@ config_version=5
 config/name="Practically_Prodigy"
 run/main_scene="uid://crnj0rxnsljwt"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Sprite/icon.svg"
+
+[display]
+
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="viewport"
 
 [physics]
 

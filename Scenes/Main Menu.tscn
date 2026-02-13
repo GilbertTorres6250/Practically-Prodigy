@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crnj0rxnsljwt"]
 
-[ext_resource type="Script" uid="uid://ehmgm173jb43" path="res://main_menu.gd" id="1_5b7ti"]
+[ext_resource type="Script" uid="uid://ehmgm173jb43" path="res://Script/main_menu.gd" id="1_totuj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7yr4w"]
 bg_color = Color(0.69803923, 0.58431375, 0.29803923, 1)
@@ -26,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5b7ti")
+script = ExtResource("1_totuj")
 
 [node name="Background" type="Panel" parent="." unique_id=1741591830]
 layout_mode = 1

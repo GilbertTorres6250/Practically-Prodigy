@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dduieo6ihrqp3"]
+
+[ext_resource type="Script" uid="uid://rcml72au1pl3" path="res://Scenes/GameManager.gd" id="1_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://bm7hca2go8d7" path="res://Prefabs/enemy_box.tscn" id="2_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://b5lc6iwlrldbg" path="res://Prefabs/player_box.tscn" id="2_go701"]
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="3_5ukr8"]
+[ext_resource type="Resource" uid="uid://bi1o02qalpq8x" path="res://CombatAction/Heal.tres" id="4_o06y3"]
+[ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="5_k7acu"]
+
+[node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character")]
+script = ExtResource("1_5a7ea")
+player_character = NodePath("Player Box")
+enemy_character = NodePath("Enemy Box")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1511996986]
+
+[node name="Player Box" parent="." unique_id=1346515138 node_paths=PackedStringArray("target") instance=ExtResource("2_go701")]
+position = Vector2(-360, 0)
+is_player = true
+moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu")])
+target = NodePath("../Enemy Box")
+
+[node name="Enemy Box" parent="." unique_id=1755620135 node_paths=PackedStringArray("target") instance=ExtResource("2_5a7ea")]
+position = Vector2(360, 0)
+moves = Array[ExtResource("3_5ukr8")]([ExtResource("5_k7acu")])
+target = NodePath("../Player Box")
