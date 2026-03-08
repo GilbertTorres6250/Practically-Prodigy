@@ -1,26 +1,94 @@
 [gd_scene format=3 uid="uid://dduieo6ihrqp3"]
 
-[ext_resource type="Script" uid="uid://rcml72au1pl3" path="res://Scenes/GameManager.gd" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://rcml72au1pl3" path="res://Script/GameManager.gd" id="1_5a7ea"]
+[ext_resource type="Texture2D" uid="uid://dbh0enhwqden0" path="res://Sprite/BG1.png" id="2_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://bm7hca2go8d7" path="res://Prefabs/enemy_box.tscn" id="2_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://b5lc6iwlrldbg" path="res://Prefabs/player_box.tscn" id="2_go701"]
 [ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="3_5ukr8"]
+[ext_resource type="Texture2D" uid="uid://borfokjv4kng1" path="res://Sprite/floor.png" id="3_ikia7"]
 [ext_resource type="Resource" uid="uid://bi1o02qalpq8x" path="res://CombatAction/Heal.tres" id="4_o06y3"]
 [ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="5_k7acu"]
+[ext_resource type="Script" uid="uid://0dwn5pu78yuy" path="res://Script/RadialMenuManager.gd" id="6_5ukr8"]
+[ext_resource type="Script" uid="uid://wfh1sti06oos" path="res://Script/ShopManager.gd" id="8_k7acu"]
 
-[node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character")]
+[node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character", "radial_menu", "combat_log", "shop_manager")]
 script = ExtResource("1_5a7ea")
 player_character = NodePath("Player Box")
 enemy_character = NodePath("Enemy Box")
+radial_menu = NodePath("RadialMenu")
+combat_log = NodePath("Words/Label")
+shop_manager = NodePath("Shop")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1511996986]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D" unique_id=2021719523]
+position = Vector2(2.0000153, 0.9999924)
+scale = Vector2(2.9895835, 4.9375)
+texture = ExtResource("2_0fj1v")
+
+[node name="Floor" type="Sprite2D" parent="Camera2D" unique_id=1683983021]
+position = Vector2(-361.5, 39.000004)
+scale = Vector2(1.3203125, 1.46875)
+texture = ExtResource("3_ikia7")
+
+[node name="Floor2" type="Sprite2D" parent="Camera2D" unique_id=70580121]
+position = Vector2(357.5, 39)
+scale = Vector2(1.3203125, 1.46875)
+texture = ExtResource("3_ikia7")
 
 [node name="Player Box" parent="." unique_id=1346515138 node_paths=PackedStringArray("target") instance=ExtResource("2_go701")]
 position = Vector2(-360, 0)
 is_player = true
-moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu")])
+moves = Array[ExtResource("3_5ukr8")]([ExtResource("5_k7acu")])
 target = NodePath("../Enemy Box")
 
 [node name="Enemy Box" parent="." unique_id=1755620135 node_paths=PackedStringArray("target") instance=ExtResource("2_5a7ea")]
 position = Vector2(360, 0)
 moves = Array[ExtResource("3_5ukr8")]([ExtResource("5_k7acu")])
 target = NodePath("../Player Box")
+tier = 3
+
+[node name="RadialMenu" type="Node2D" parent="." unique_id=1612374165 node_paths=PackedStringArray("battle_manager")]
+script = ExtResource("6_5ukr8")
+battle_manager = NodePath("..")
+
+[node name="Words" type="Control" parent="." unique_id=936312147]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -308.0
+offset_top = 196.0
+offset_right = 299.0
+offset_bottom = 289.0
+
+[node name="Label" type="Label" parent="Words" unique_id=1203664132]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+metadata/_edit_use_anchors_ = true
+
+[node name="Shop" type="Control" parent="." unique_id=89740585 node_paths=PackedStringArray("battle_manager")]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -308.0
+offset_top = -292.0
+offset_right = 299.0
+offset_bottom = -192.0
+script = ExtResource("8_k7acu")
+battle_manager = NodePath("..")
+available_moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu")])
+
+[node name="Label" type="Label" parent="Shop" unique_id=1749079914]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+metadata/_edit_use_anchors_ = true

@@ -15,11 +15,19 @@ run/main_scene="uid://crnj0rxnsljwt"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://Sprite/icon.svg"
 
+[autoload]
+
+GameState="*uid://bkfbjpxoc4t1p"
+
 [display]
 
 window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="viewport"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [physics]
 

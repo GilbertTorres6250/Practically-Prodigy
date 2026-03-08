@@ -3,7 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://b5lc6iwlrldbg" path="res://Prefabs/player_box.tscn" id="1_1j2og"]
 [ext_resource type="Texture2D" uid="uid://cncwfpwtscgik" path="res://Sprite/Zombie.png" id="2_jyxkq"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1j2og"]
+bg_color = Color(1, 0, 0.09411765, 1)
+
 [node name="Enemy Box" unique_id=1755620135 instance=ExtResource("1_1j2og")]
 
 [node name="Player" parent="." index="0" unique_id=1891881125]
 texture = ExtResource("2_jyxkq")
+script = null
+
+[node name="Health Bar" parent="." index="1" unique_id=1853020102]
+unique_name_in_owner = true
+theme_override_styles/fill = SubResource("StyleBoxFlat_1j2og")
