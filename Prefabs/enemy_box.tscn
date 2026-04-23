@@ -7,8 +7,9 @@
 bg_color = Color(1, 0, 0.09411765, 1)
 
 [node name="Enemy Box" unique_id=1755620135 instance=ExtResource("1_1j2og")]
+is_player = false
 
-[node name="Player" parent="." index="0" unique_id=1891881125]
+[node name="Sprite" parent="." index="0" unique_id=1891881125]
 texture = ExtResource("2_jyxkq")
 script = null
 

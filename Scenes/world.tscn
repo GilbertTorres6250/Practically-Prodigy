@@ -10,20 +10,20 @@
 [ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="5_k7acu"]
 [ext_resource type="Script" uid="uid://0dwn5pu78yuy" path="res://Script/RadialMenuManager.gd" id="6_5ukr8"]
 [ext_resource type="Script" uid="uid://wfh1sti06oos" path="res://Script/ShopManager.gd" id="8_k7acu"]
+[ext_resource type="Resource" uid="uid://bq0167sm5mxj6" path="res://CombatAction/Lightning_Bolt.tres" id="10_0fj1v"]
 
-[node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character", "radial_menu", "combat_log", "shop_manager")]
+[node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character", "radial_menu", "shop_manager")]
 script = ExtResource("1_5a7ea")
 player_character = NodePath("Player Box")
 enemy_character = NodePath("Enemy Box")
 radial_menu = NodePath("RadialMenu")
-combat_log = NodePath("Words/Label")
 shop_manager = NodePath("Shop")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1511996986]
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D" unique_id=2021719523]
-position = Vector2(2.0000153, 0.9999924)
-scale = Vector2(2.9895835, 4.9375)
+texture_filter = 3
+scale = Vector2(3.5, 5)
 texture = ExtResource("2_0fj1v")
 
 [node name="Floor" type="Sprite2D" parent="Camera2D" unique_id=1683983021]
@@ -38,38 +38,18 @@ texture = ExtResource("3_ikia7")
 
 [node name="Player Box" parent="." unique_id=1346515138 node_paths=PackedStringArray("target") instance=ExtResource("2_go701")]
 position = Vector2(-360, 0)
-is_player = true
-moves = Array[ExtResource("3_5ukr8")]([ExtResource("5_k7acu")])
+moves = Array[ExtResource("3_5ukr8")]([ExtResource("10_0fj1v")])
 target = NodePath("../Enemy Box")
 
 [node name="Enemy Box" parent="." unique_id=1755620135 node_paths=PackedStringArray("target") instance=ExtResource("2_5a7ea")]
 position = Vector2(360, 0)
-moves = Array[ExtResource("3_5ukr8")]([ExtResource("5_k7acu")])
+moves = Array[ExtResource("3_5ukr8")]([ExtResource("10_0fj1v")])
 target = NodePath("../Player Box")
 tier = 3
 
 [node name="RadialMenu" type="Node2D" parent="." unique_id=1612374165 node_paths=PackedStringArray("battle_manager")]
 script = ExtResource("6_5ukr8")
 battle_manager = NodePath("..")
-
-[node name="Words" type="Control" parent="." unique_id=936312147]
-custom_minimum_size = Vector2(600, 100)
-layout_mode = 3
-anchors_preset = 0
-offset_left = -308.0
-offset_top = 196.0
-offset_right = 299.0
-offset_bottom = 289.0
-
-[node name="Label" type="Label" parent="Words" unique_id=1203664132]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 70
-metadata/_edit_use_anchors_ = true
 
 [node name="Shop" type="Control" parent="." unique_id=89740585 node_paths=PackedStringArray("battle_manager")]
 custom_minimum_size = Vector2(600, 100)
@@ -81,7 +61,7 @@ offset_right = 299.0
 offset_bottom = -192.0
 script = ExtResource("8_k7acu")
 battle_manager = NodePath("..")
-available_moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu")])
+available_moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu"), ExtResource("10_0fj1v")])
 
 [node name="Label" type="Label" parent="Shop" unique_id=1749079914]
 layout_mode = 1

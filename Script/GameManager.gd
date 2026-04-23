@@ -31,17 +31,20 @@ func end_battle():
 	player_character.moves = GameState.permanent_moves.duplicate()
 	get_tree().change_scene_to_file("res://Scenes/PermanentShop.tscn")
 
+
 func next_turn():
 	if game_over:
 		return
 	
 	if current_character != null:
 		current_character.end_turn()
-		if current_character.is_player:
-			turn_count += 1
-			if turn_count % shop_interval == 0:
-				shop_manager.open_shop()
-				return
+	
+	if current_character == player_character:
+		turn_count += 1
+		if turn_count % shop_interval == 0:
+			_give_enemy_cards()
+			shop_manager.open_shop()
+			return
 	
 	if current_character == enemy_character or current_character == null:
 		current_character = player_character
@@ -49,21 +52,28 @@ func next_turn():
 		current_character = enemy_character
 	
 	current_character.begin_turn()
+	var can_act = not current_character.stunned
+	if current_character.stunned:
+		current_character.stunned = false
+		current_character.flash_effect.flash_stun()
+		await get_tree().create_timer(0.5).timeout
 	
 	if current_character.is_player:
-		turn_count += 1
-		if turn_count % shop_interval == 0:
-			_give_enemy_cards()
-			shop_manager.open_shop()
+		if not can_act:
+			next_turn()
 			return
 		radial_menu.show_menu(player_character.moves)
 	else:
+		if not can_act:
+			await get_tree().create_timer(0.5).timeout
+			next_turn()
+			return
 		radial_menu.hide_menu()
 		var wait_time = randf_range(0.5, 1.5)
 		await get_tree().create_timer(wait_time).timeout
 		var action_to_cast = enemy_turn()
-		var log = enemy_character.commit_action(action_to_cast, player_character)
-		combat_log.text = log
+		enemy_character.play_attack()
+		enemy_character.commit_action(action_to_cast, player_character)
 		await get_tree().create_timer(0.5).timeout
 		next_turn()
 
@@ -73,6 +83,7 @@ func player_cast_move(action: CombatAction):
 	if not is_instance_valid(enemy_character):
 		return
 	radial_menu.hide_menu()
+	player_character.play_attack()
 	player_character.commit_action(action, enemy_character)
 	if game_over:
 		return

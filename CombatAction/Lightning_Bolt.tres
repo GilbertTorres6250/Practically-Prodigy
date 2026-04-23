@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://bq0167sm5mxj6"]
+
+[ext_resource type="Script" uid="uid://buemaskryaty1" path="res://CombatEffect.gd" id="1_polcd"]
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="2_3rxt1"]
+
+[sub_resource type="Resource" id="Resource_0i3w5"]
+script = ExtResource("1_polcd")
+base_chance = 0.8
+metadata/_custom_type_script = "uid://buemaskryaty1"
+
+[sub_resource type="Resource" id="Resource_l4yov"]
+script = ExtResource("1_polcd")
+effect_type = 3
+base_chance = 0.3
+chance_per_level = 0.05
+metadata/_custom_type_script = "uid://buemaskryaty1"
+
+[resource]
+script = ExtResource("2_3rxt1")
+display_name = "Lightning bolt"
+description = "Summon a bolt of lightning to strike your enimes."
+rarity = 1
+base_weight = 80
+primary_effect = SubResource("Resource_0i3w5")
+secondary_effect = SubResource("Resource_l4yov")

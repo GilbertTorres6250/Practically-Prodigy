@@ -1,10 +1,15 @@
 [gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://b3qyl0t7kx2y2"]
 
+[ext_resource type="Script" uid="uid://buemaskryaty1" path="res://CombatEffect.gd" id="1_1ey4b"]
 [ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="1_h3bnb"]
+
+[sub_resource type="Resource" id="Resource_1lm54"]
+script = ExtResource("1_1ey4b")
+metadata/_custom_type_script = "uid://buemaskryaty1"
 
 [resource]
 script = ExtResource("1_h3bnb")
 display_name = "Slash"
-description = "Deal LVL DMG"
-melee_damage = 1
-metadata/_custom_type_script = "uid://xgqwxlorlhh2"
+description = "Simple slash attack"
+base_weight = 90
+primary_effect = SubResource("Resource_1lm54")

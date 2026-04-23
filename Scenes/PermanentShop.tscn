@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://sfo4fgprxk32" path="res://Script/PermanentShop.gd" id="1_p40nw"]
 [ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="2_7jcn2"]
 [ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="3_7favq"]
+[ext_resource type="Resource" uid="uid://bq0167sm5mxj6" path="res://CombatAction/Lightning_Bolt.tres" id="3_un7p6"]
 [ext_resource type="Resource" uid="uid://bi1o02qalpq8x" path="res://CombatAction/Heal.tres" id="4_un7p6"]
 
 [node name="Control" type="Control" unique_id=1976679949]
@@ -11,7 +12,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_p40nw")
-available_moves = Array[ExtResource("2_7jcn2")]([ExtResource("3_7favq"), ExtResource("4_un7p6")])
+available_moves = Array[ExtResource("2_7jcn2")]([ExtResource("3_un7p6"), ExtResource("3_7favq"), ExtResource("4_un7p6")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1721107221]
 

@@ -13,7 +13,15 @@ var shield : int = 0
 @onready var healthBar : ProgressBar = get_node("Health Bar")
 @onready var healthLabel : Label = get_node("Health Bar/Health Text")
 
+@export var sprite : Sprite2D
+@onready var flash_effect : FlashEffect = $FlashEffect
+
+var damage_number_scene = preload("res://DamageNumber.tscn")
+
 var target_scale : float = 1.0
+
+@onready var anim_effect : AnimationEffect = $AnimationEffect
+@onready var particle_effect : ParticleEffect = $ParticleEffect
 
 func _ready():
 	healthBar.max_value = maxHealth
@@ -27,48 +35,96 @@ func take_damage(damage: int):
 		damage -= absorbed
 	currentHealth -= damage
 	_update_health_bar()
+	_spawn_number(damage, false)
+	flash_effect.flash(Color.RED)
+	anim_effect.shake()
+	particle_effect.play_damage()
 	if currentHealth <= 0:
 		if not is_player:
 			drop_coins()
 			get_parent().end_battle()
 		queue_free()
-func heal(repair):
-	currentHealth += repair
 
+func heal(repair: int):
+	currentHealth += repair
 	if currentHealth >= maxHealth:
 		currentHealth = maxHealth
-
 	_update_health_bar()
+	_spawn_number(repair, true)
+	flash_effect.flash(Color.GREEN)
+	particle_effect.play_heal()
+
+func _spawn_number(amount: int, is_heal: bool):
+	var num = damage_number_scene.instantiate()
+	get_parent().add_child(num)
+	num.position = global_position + Vector2(randf_range(-20, 20), -40)
+	num.setup(amount, is_heal)
 
 func end_turn():
 	target_scale = 0.9
 
+var stunned : bool = false
+
 func begin_turn():
-	target_scale = 1.1
+	target_scale = 1.5
 	if is_player:
 		print("Player")
 	else:
 		print("Enemy")
 		
-func commit_action(action: CombatAction, target: Character) -> String:
+func play_attack():
+	anim_effect.bounce_attack()
+	
+func commit_action(action: CombatAction, combat_target: Character) -> String:
 	if action == null:
 		return "Nothing happened"
+	
 	var level = moves.count(action)
-	print("action: ", action.display_name, " level counted: ", level, " total moves: ", moves.size())
 	var log_text = ""
-	var damage = action.melee_damage * level
-	var healing = action.heal_amount * level
-	var shield_amt = action.shield_amount * level
-	if damage > 0:
-		target.take_damage(damage)
-		log_text = "%s Lvl.%d, %d DMG" % [action.display_name, level, damage]
-	if healing > 0:
-		heal(healing)
-		log_text = "%s Lvl.%d, %d HEAL" % [action.display_name, level, healing]
-	if shield_amt > 0:
-		self.shield += shield_amt
-		log_text = "%s Lvl.%d, %d SHIELD" % [action.display_name, level, shield_amt]
+	
+	if action.primary_effect:
+		log_text = _apply_effect(action.primary_effect, combat_target, level, action.display_name)
+	
+	if action.secondary_effect:
+		var secondary_log = _apply_effect(action.secondary_effect, combat_target, level, action.display_name)
+		if secondary_log != "":
+			log_text += " / " + secondary_log
+	
 	return log_text
+
+func _apply_effect(effect: CombatEffect, combat_target: Character, level: int, move_name: String) -> String:
+	print("applying effect: ", effect.effect_type, " to: ", combat_target.name, " value: ", effect.base_value, " level: ", level)
+	var chance = clamp(effect.base_chance + effect.chance_per_level * (level - 1), 0.0, 1.0)
+	print("chance: ", chance)
+	if randf() > chance:
+		return "%s MISSED" % move_name
+	
+	var value = effect.base_value * level
+	
+	match effect.effect_type:
+		CombatEffect.EffectType.DAMAGE:
+			combat_target.take_damage(value)
+			return "%s, %d DMG" % [move_name, value]
+		
+		CombatEffect.EffectType.HEAL:
+			heal(value)
+			return "%s, +%d HEAL" % [move_name, value]
+		
+		CombatEffect.EffectType.SHIELD:
+			shield += value
+			return "%s, +%d SHIELD" % [move_name, value]
+		
+		CombatEffect.EffectType.STUN:
+			combat_target.stunned = true
+			combat_target.flash_effect.flash_stun()
+			return "%s, STUNNED" % move_name
+		
+		CombatEffect.EffectType.AOE_DAMAGE:
+			# handled by BattleManager later when we add multi-enemy
+			combat_target.take_damage(value)
+			return "%s, %d AOE DMG" % [move_name, value]
+	
+	return ""
 
 func _update_health_bar():
 	print("updating health bar, healthBar: ", healthBar, " value: ", currentHealth)

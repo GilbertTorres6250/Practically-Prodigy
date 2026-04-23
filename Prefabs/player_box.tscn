@@ -2,7 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://bavyclytmrs0y" path="res://Sprite/Player.png" id="1_8ypp5"]
 [ext_resource type="Script" uid="uid://g4jync8to81l" path="res://Prefabs/Character.gd" id="1_kptw1"]
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="2_uqat3"]
+[ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="3_4gpnp"]
 [ext_resource type="Script" uid="uid://0dwn5pu78yuy" path="res://Script/RadialMenuManager.gd" id="3_6f05t"]
+[ext_resource type="Script" uid="uid://brhrm514mundn" path="res://FlashEffect.gd" id="4_qa1lw"]
+[ext_resource type="Script" uid="uid://blp71o36wi6bf" path="res://Prefabs/AnimationEffect.gd" id="7_48cpj"]
+[ext_resource type="Script" uid="uid://dp4goe5mugh8h" path="res://Prefabs/ParticleEffect.gd" id="8_kbskh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go701"]
 bg_color = Color(0, 0, 0, 1)
@@ -18,8 +23,10 @@ shadow_color = Color(0, 0, 0, 1)
 [node name="Player Box" type="Node2D" unique_id=1755620135]
 scale = Vector2(2, 2)
 script = ExtResource("1_kptw1")
+is_player = true
+moves = Array[ExtResource("2_uqat3")]([ExtResource("3_4gpnp")])
 
-[node name="Player" type="Sprite2D" parent="." unique_id=1891881125]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1891881125]
 texture_filter = 1
 texture = ExtResource("1_8ypp5")
 script = ExtResource("3_6f05t")
@@ -52,3 +59,14 @@ grow_vertical = 2
 text = "25/25"
 label_settings = SubResource("LabelSettings_kptw1")
 horizontal_alignment = 1
+
+[node name="FlashEffect" type="Node2D" parent="." unique_id=295828972 node_paths=PackedStringArray("sprite")]
+script = ExtResource("4_qa1lw")
+sprite = NodePath("../Sprite")
+
+[node name="AnimationEffect" type="Node2D" parent="." unique_id=282227270 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_48cpj")
+sprite = NodePath("../Sprite")
+
+[node name="ParticleEffect" type="CPUParticles2D" parent="." unique_id=284761611]
+script = ExtResource("8_kbskh")
