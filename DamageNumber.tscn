@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://blxps03bxfhr6"]
 
-[ext_resource type="Script" uid="uid://cw25kyt7x3887" path="res://DamageNumber.gd" id="1_w08oa"]
+[ext_resource type="Script" uid="uid://cw25kyt7x3887" path="res://Script/DamageNumber.gd" id="1_w08oa"]
+
 
 [node name="Label" type="Label" unique_id=970958330]
 offset_right = 40.0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://crolgxgxkn142"]
+
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="1_43jn2"]
+[ext_resource type="Script" uid="uid://buemaskryaty1" path="res://Script/CombatEffect.gd" id="1_skny8"]
+
+[sub_resource type="Resource" id="Resource_1tcak"]
+script = ExtResource("1_skny8")
+effect_type = 8
+base_value = 5
+metadata/_custom_type_script = "uid://buemaskryaty1"
+
+[resource]
+script = ExtResource("1_43jn2")
+display_name = "Flail"
+description = "Strike your enemy recklessly and hope for the best"
+primary_effect = SubResource("Resource_1tcak")
+metadata/_custom_type_script = "uid://xgqwxlorlhh2"

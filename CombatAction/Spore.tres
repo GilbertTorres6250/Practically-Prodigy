@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://25yfwlehoyqe"]
+
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="1_8n3um"]
+[ext_resource type="Script" uid="uid://buemaskryaty1" path="res://Script/CombatEffect.gd" id="1_n6nse"]
+
+[sub_resource type="Resource" id="Resource_kfp63"]
+script = ExtResource("1_n6nse")
+effect_type = 6
+base_value = 2
+base_chance = 0.7
+chance_per_level = 0.05
+metadata/_custom_type_script = "uid://buemaskryaty1"
+
+[resource]
+script = ExtResource("1_8n3um")
+display_name = "Spore"
+description = "Spawn fungus on the enemy to drain life force"
+primary_effect = SubResource("Resource_kfp63")
+metadata/_custom_type_script = "uid://xgqwxlorlhh2"

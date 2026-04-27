@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b5lc6iwlrldbg"]
 
 [ext_resource type="Texture2D" uid="uid://bavyclytmrs0y" path="res://Sprite/Player.png" id="1_8ypp5"]
-[ext_resource type="Script" uid="uid://g4jync8to81l" path="res://Prefabs/Character.gd" id="1_kptw1"]
+[ext_resource type="Script" uid="uid://g4jync8to81l" path="res://Script/Character.gd" id="1_kptw1"]
 [ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="2_uqat3"]
 [ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="3_4gpnp"]
 [ext_resource type="Script" uid="uid://0dwn5pu78yuy" path="res://Script/RadialMenuManager.gd" id="3_6f05t"]
-[ext_resource type="Script" uid="uid://brhrm514mundn" path="res://FlashEffect.gd" id="4_qa1lw"]
-[ext_resource type="Script" uid="uid://blp71o36wi6bf" path="res://Prefabs/AnimationEffect.gd" id="7_48cpj"]
-[ext_resource type="Script" uid="uid://dp4goe5mugh8h" path="res://Prefabs/ParticleEffect.gd" id="8_kbskh"]
+[ext_resource type="Script" uid="uid://brhrm514mundn" path="res://Script/FlashEffect.gd" id="4_qa1lw"]
+[ext_resource type="Script" uid="uid://blp71o36wi6bf" path="res://Script/AnimationEffect.gd" id="7_48cpj"]
+[ext_resource type="Script" uid="uid://dp4goe5mugh8h" path="res://Script/ParticleEffect.gd" id="8_kbskh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_go701"]
 bg_color = Color(0, 0, 0, 1)

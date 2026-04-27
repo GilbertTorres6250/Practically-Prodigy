@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CombatAction" format=3 uid="uid://0ddh4c86j1u4"]
+
+[ext_resource type="Script" uid="uid://xgqwxlorlhh2" path="res://Script/CombatAction.gd" id="1_56xqt"]
+[ext_resource type="Script" uid="uid://buemaskryaty1" path="res://Script/CombatEffect.gd" id="1_sdl33"]
+
+[sub_resource type="Resource" id="Resource_fx6gh"]
+script = ExtResource("1_sdl33")
+effect_type = 7
+base_chance = 0.7
+chance_per_level = 0.05
+metadata/_custom_type_script = "uid://buemaskryaty1"
+
+[resource]
+script = ExtResource("1_56xqt")
+display_name = "Splash"
+description = "Summon a steam of water to flow against enimes"
+primary_effect = SubResource("Resource_fx6gh")
+metadata/_custom_type_script = "uid://xgqwxlorlhh2"

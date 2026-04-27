@@ -10,7 +10,11 @@
 [ext_resource type="Resource" uid="uid://b3qyl0t7kx2y2" path="res://CombatAction/Slash.tres" id="5_k7acu"]
 [ext_resource type="Script" uid="uid://0dwn5pu78yuy" path="res://Script/RadialMenuManager.gd" id="6_5ukr8"]
 [ext_resource type="Script" uid="uid://wfh1sti06oos" path="res://Script/ShopManager.gd" id="8_k7acu"]
-[ext_resource type="Resource" uid="uid://bq0167sm5mxj6" path="res://CombatAction/Lightning_Bolt.tres" id="10_0fj1v"]
+[ext_resource type="Resource" uid="uid://bq0167sm5mxj6" path="res://CombatAction/Spark.tres" id="10_0fj1v"]
+[ext_resource type="Resource" uid="uid://crolgxgxkn142" path="res://CombatAction/Flail.tres" id="10_kn0ld"]
+[ext_resource type="Resource" uid="uid://d1xtodt7njakc" path="res://CombatAction/Ignite.tres" id="12_hgpy0"]
+[ext_resource type="Resource" uid="uid://0ddh4c86j1u4" path="res://CombatAction/Splash.tres" id="14_t2t4p"]
+[ext_resource type="Resource" uid="uid://25yfwlehoyqe" path="res://CombatAction/Spore.tres" id="15_0pcbe"]
 
 [node name="World" type="Node2D" unique_id=567190047 node_paths=PackedStringArray("player_character", "enemy_character", "radial_menu", "shop_manager")]
 script = ExtResource("1_5a7ea")
@@ -23,6 +27,7 @@ shop_manager = NodePath("Shop")
 
 [node name="Sprite2D" type="Sprite2D" parent="Camera2D" unique_id=2021719523]
 texture_filter = 3
+position = Vector2(4, 2)
 scale = Vector2(3.5, 5)
 texture = ExtResource("2_0fj1v")
 
@@ -61,7 +66,7 @@ offset_right = 299.0
 offset_bottom = -192.0
 script = ExtResource("8_k7acu")
 battle_manager = NodePath("..")
-available_moves = Array[ExtResource("3_5ukr8")]([ExtResource("4_o06y3"), ExtResource("5_k7acu"), ExtResource("10_0fj1v")])
+available_moves = Array[ExtResource("3_5ukr8")]([ExtResource("10_kn0ld"), ExtResource("4_o06y3"), ExtResource("12_hgpy0"), ExtResource("5_k7acu"), ExtResource("10_0fj1v"), ExtResource("14_t2t4p"), ExtResource("15_0pcbe")])
 
 [node name="Label" type="Label" parent="Shop" unique_id=1749079914]
 layout_mode = 1

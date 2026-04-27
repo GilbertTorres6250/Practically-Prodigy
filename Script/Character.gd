@@ -23,6 +23,9 @@ var target_scale : float = 1.0
 @onready var anim_effect : AnimationEffect = $AnimationEffect
 @onready var particle_effect : ParticleEffect = $ParticleEffect
 
+var burning : bool = false
+var burn_stacks : int = 0
+
 func _ready():
 	healthBar.max_value = maxHealth
 	print("build_menu called, move count: ", moves.size())
@@ -62,6 +65,13 @@ func _spawn_number(amount: int, is_heal: bool):
 
 func end_turn():
 	target_scale = 0.9
+	if burning and burn_stacks > 0:
+		take_damage(burn_stacks)
+		_spawn_number(burn_stacks, false)
+		particle_effect.play_burn()
+		burn_stacks -= 1
+		if burn_stacks <= 0:
+			burning = false
 
 var stunned : bool = false
 
@@ -123,6 +133,37 @@ func _apply_effect(effect: CombatEffect, combat_target: Character, level: int, m
 			# handled by BattleManager later when we add multi-enemy
 			combat_target.take_damage(value)
 			return "%s, %d AOE DMG" % [move_name, value]
+			
+		CombatEffect.EffectType.BURN:
+			combat_target.burning = true
+			combat_target.burn_stacks += value
+			combat_target.flash_effect.flash(Color.ORANGE)
+			combat_target.particle_effect.play_burn()
+			return "%s, BURN %d" % [move_name, value]
+
+		CombatEffect.EffectType.DRAIN:
+			var drain_damage = value
+			var heal_amount = max(1, drain_damage / 2)
+			combat_target.take_damage(drain_damage)
+			heal(heal_amount)
+			combat_target.particle_effect.play_drain()
+			return "%s, %d DMG %d HEAL" % [move_name, drain_damage, heal_amount]
+
+		CombatEffect.EffectType.SPLASH:
+			combat_target.take_damage(value)
+			combat_target.particle_effect.play_splash()
+			# bounce logic handled in BattleManager when multi-enemy is added
+			return "%s, %d DMG" % [move_name, value]
+
+		CombatEffect.EffectType.FLAIL:
+			var roll = randf()
+			if roll <= 0.2:
+				var damage = 5 * level
+				combat_target.take_damage(damage)
+				combat_target.particle_effect.play_damage()
+				return "%s, %d DMG" % [move_name, damage]
+			else:
+				return "%s MISSED" % move_name
 	
 	return ""
 

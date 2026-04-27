@@ -7,6 +7,10 @@ enum EffectType {
 	SHIELD,
 	STUN,
 	AOE_DAMAGE,
+	BURN,
+	DRAIN,
+	SPLASH,
+	FLAIL,
 }
 
 @export var effect_type : EffectType = EffectType.DAMAGE
